@@ -16,7 +16,8 @@
     <nav class="main-nav" aria-label="Main navigation">
       <a class="nav-link active" href="#home" data-view-link="home">Home</a>
       <a class="nav-link" href="#reports" data-view-link="reports">Community reports</a>
-      <a class="nav-link" href="#admin" data-view-link="admin">Admin dashboard</a>
+      <a class="nav-link" href="#admin-login" data-view-link="admin-login">Admin login</a>
+      <a class="nav-link" href="#worker-login" data-view-link="worker-login">Worker portal</a>
     </nav>
     <button class="button button-dark nav-report" data-open-report>＋ <span>Report an issue</span></button>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
@@ -69,11 +70,37 @@
 
     <section class="impact-banner page-wrap"><div class="impact-icon">✳</div><div><div class="eyebrow">GOOD THINGS HAPPEN WHEN WE JOIN IN</div><h2>See a problem?<br><em>Be part of the solution.</em></h2></div><p>It takes less than a minute to report an issue. Your small action can make a big difference to the whole neighbourhood.</p><button class="button button-light" data-open-report>Make a report <span>↗</span></button><span class="banner-leaf">✳</span></section>
 
-    <section class="admin-section page-wrap" id="admin">
-      <div class="section-heading admin-heading"><div><div class="eyebrow">FOR THE PEOPLE KEEPING IT CLEAN</div><h2>Admin dashboard<span class="heading-period">.</span></h2><p>Manage reports and keep the community in the loop.</p></div><span class="admin-badge"><span></span> Live overview</span></div>
-      <div class="admin-summary"><div><span>Total reports</span><strong id="admin-total">24</strong><small>Across the community</small></div><div><span>Needs attention</span><strong id="admin-pending">06</strong><small>Not yet resolved</small></div><div><span>Resolved this month</span><strong id="admin-resolved">18</strong><small class="positive">↗ Great work, everyone</small></div></div>
-      <div class="table-card"><div class="table-title"><div><h3>All reports</h3><p>Update a status to keep everyone informed.</p></div><span class="table-live"><span></span> UP TO DATE</span></div><div class="table-scroll"><table><thead><tr><th>REPORT</th><th>LOCATION</th><th>TYPE</th><th>PRIORITY</th><th>STATUS</th><th>REPORTED</th></tr></thead><tbody id="admin-rows"></tbody></table></div><div class="table-footer"><span id="table-count">Showing 3 reports</span><span>SafaiSathi community portal</span></div></div>
+    <section class="admin-login-section page-wrap" id="admin-login">
+      <div class="login-card">
+        <div class="login-mark">▣</div>
+        <div class="eyebrow">SAFAISATHI TEAM</div>
+        <h2>Admin sign in<span class="heading-period">.</span></h2>
+        <p>Sign in to review community reports and manage cleanup progress.</p>
+        <form id="admin-login-form">
+          <label>Login ID<input name="loginId" autocomplete="username" required placeholder="Enter admin ID"></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" required placeholder="Enter password"></label>
+          <p class="login-error" id="login-error" role="alert" hidden>That login ID or password doesn’t match. Try again.</p>
+          <button class="button button-primary login-submit" type="submit">Sign in <span>↗</span></button>
+        </form>
+        <div class="demo-credentials"><strong>Demo access</strong><span>Login ID: <code>admin</code></span><span>Password: <code>safai123</code></span></div>
+      </div>
     </section>
+
+    <section class="admin-section page-wrap" id="admin" hidden>
+      <div class="section-heading admin-heading"><div><div class="eyebrow">FOR THE PEOPLE KEEPING IT CLEAN</div><h2>Admin dashboard<span class="heading-period">.</span></h2><p>Manage reports and keep the community in the loop.</p></div><span class="admin-badge"><span></span> Live overview</span></div>
+      <div class="admin-toolbar"><div><span class="signed-in-dot"></span> Signed in as <strong>SafaiSathi Admin</strong></div><button class="logout-button" id="admin-logout">Sign out <span>↗</span></button></div>
+      <div class="admin-summary"><div><span>Total reports</span><strong id="admin-total">24</strong><small>Across the community</small></div><div><span>Needs attention</span><strong id="admin-pending">06</strong><small>Not yet resolved</small></div><div><span>Resolved this month</span><strong id="admin-resolved">18</strong><small class="positive">↗ Great work, everyone</small></div></div>
+      <div class="worker-location-admin"><div class="table-title"><div><h3>Worker GPS locations</h3><p>Latest location shared by workers while they are signed in.</p></div><span class="table-live"><span></span> LATEST SHARED</span></div><div class="worker-location-list" id="worker-location-list"></div></div>
+      <div class="table-card"><div class="table-title"><div><h3>All reports & work orders</h3><p>Assign a worker, set their payment, and track the cleanup.</p></div><span class="table-live"><span></span> UP TO DATE</span></div><div class="table-scroll"><table><thead><tr><th>REPORT</th><th>LOCATION</th><th>AUTO FLAGS</th><th>ASSIGN TO</th><th>PAY (₹)</th><th>PAYMENT</th><th>STATUS</th></tr></thead><tbody id="admin-rows"></tbody></table></div><div class="table-footer"><span id="table-count">Showing 3 reports</span><span>SafaiSathi community portal</span></div></div>
+    </section>
+
+    <section class="admin-login-section page-wrap" id="worker-login">
+      <div class="login-card"><div class="login-mark">♙</div><div class="eyebrow">SAFAISATHI FIELD TEAM</div><h2>Worker portal<span class="heading-period">.</span></h2><p>Sign in to see your assigned cleanup jobs and update their progress.</p>
+        <form id="worker-login-form"><label>Worker ID<input name="workerId" autocomplete="username" required placeholder="e.g. W-101"></label><label>Access PIN<input name="pin" type="password" inputmode="numeric" autocomplete="current-password" required placeholder="4-digit PIN"></label><p class="login-error" id="worker-login-error" role="alert" hidden>Worker ID or PIN doesn’t match.</p><button class="button button-primary login-submit" type="submit">Open my jobs <span>↗</span></button></form>
+        <div class="demo-credentials"><strong>Demo worker access</strong><span>W-101 / 1234</span><span>W-102 / 2345</span><span>W-103 / 3456</span></div>
+      </div>
+    </section>
+    <section class="admin-section page-wrap" id="worker-portal" hidden><div class="section-heading admin-heading"><div><div class="eyebrow">YOUR ASSIGNED CLEANUPS</div><h2>My work<span class="heading-period">.</span></h2><p id="worker-welcome">Track assigned jobs and update progress.</p></div><span class="admin-badge"><span></span> Worker portal</span></div><div class="admin-toolbar"><div><span class="signed-in-dot"></span> Worker <strong id="worker-name"></strong></div><div class="worker-toolbar-actions"><button class="share-location-button" id="worker-share-location">⌖ Share live GPS</button><button class="share-location-button stop-sharing" id="worker-stop-location" hidden>Stop sharing</button><button class="logout-button" id="worker-logout">Sign out <span>↗</span></button></div></div><p class="location-consent-note">Your location is shared with the admin only while live sharing is on. Stop any time.</p><div class="worker-location-status" id="worker-location-status" aria-live="polite"></div><div class="worker-jobs" id="worker-jobs"></div></section>
   </main>
 
   <footer class="footer"><div class="page-wrap footer-inner"><a class="brand" href="#home"><span class="brand-mark">✳</span><span>Safai<span class="brand-light">Sathi</span></span></a><p>A cleaner neighbourhood is a shared effort.</p><span>Made with care for our communities <b>♥</b></span></div></footer>
@@ -84,10 +111,10 @@
       <div class="modal-kicker"><span>✳</span> MAKE YOUR NEIGHBOURHOOD BETTER</div>
       <h2 id="modal-title">Report a waste issue</h2><p class="modal-intro">Tell us what’s going on. We’ll make sure it gets seen.</p>
       <form id="report-form">
-        <div class="form-row"><label>Your name<input name="name" required maxlength="60" placeholder="e.g. Aanya Sharma"></label><label>Location<input name="location" required maxlength="100" placeholder="Area, street or landmark"></label></div>
-        <div class="form-row"><label>Type of waste<select name="type" required><option value="" disabled selected>Select a type</option><option>Household waste</option><option>Plastic waste</option><option>Food waste</option><option>Construction waste</option><option>Mixed waste</option><option>Other</option></select></label><label>Photo <span class="optional">(optional)</span><input name="photo" type="file" accept="image/*"></label></div>
+        <div class="form-row"><label>Your name<input name="name" required maxlength="60" placeholder="e.g. Aanya Sharma"></label><label>Location<input name="location" required maxlength="100" placeholder="Area, street or landmark"><button class="gps-button" type="button" id="get-location">⌖ Use my current GPS location</button><small class="gps-result" id="gps-result" aria-live="polite"></small><input type="hidden" name="latitude"><input type="hidden" name="longitude"></label></div>
+        <div class="form-row"><label>Type of waste<select name="type" required><option value="" disabled selected>Select a type</option><option>Household waste</option><option>Plastic waste</option><option>Food waste</option><option>Construction waste</option><option>Medicinal waste</option><option>Mixed waste</option><option>Other</option></select></label><label>Photo <span class="optional">(optional)</span><input name="photo" type="file" accept="image/*"></label></div>
         <label>Description<textarea name="description" required maxlength="400" rows="3" placeholder="What did you notice? Add any details that could help..."></textarea></label>
-        <div class="form-note"><span>ⓘ</span> Your report will be visible to the community and local admin.</div>
+        <div class="form-note"><span>ⓘ</span> Your report will be visible to the community and local admin. Nearby place matches use © OpenStreetMap contributors.</div>
         <button class="button button-primary submit-button" type="submit">Submit report <span>↗</span></button>
       </form>
       <div class="success-message" id="success-message" hidden><span class="success-check">✓</span><h3>Thanks for speaking up!</h3><p>Your report is now visible to the community.</p><button class="button button-dark" id="success-done">Back to the neighbourhood</button></div>
